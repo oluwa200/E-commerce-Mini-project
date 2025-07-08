@@ -1,0 +1,19 @@
+
+replicaCount: 1
+image:
+  repository: <your-backend-ecr-repo>
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 5000
+
+ingress:
+  enabled: true
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  hosts:
+    - host: backend.yourdomain.com
+      paths:
+        - /

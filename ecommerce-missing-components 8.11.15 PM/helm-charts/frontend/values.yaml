@@ -1,0 +1,19 @@
+
+replicaCount: 1
+image:
+  repository: <your-frontend-ecr-repo>
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  hosts:
+    - host: frontend.yourdomain.com
+      paths:
+        - /
